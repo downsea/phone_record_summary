@@ -8,3 +8,11 @@ wheels/
 
 # Virtual environments
 .venv
+
+# data
+data/
+.claude/
+output/
+logs/
+test_data/
+node_modules/
