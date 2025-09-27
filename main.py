@@ -71,55 +71,42 @@ class FileParser:
     """解析通话记录文件名，提取手机号、时间信息和联系人姓名"""
 
     def __init__(self):
-        # 格式1（原有）: +86 130 1369 6636_20231128203503_transcription.txt
         self.pattern1 = re.compile(
             r'\+86\s*(\d{3})\s*(\d{4})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式2（新增）: 186 6666 1585_20230510151000_transcription.txt
         self.pattern2 = re.compile(
             r'(\d{3})\s*(\d{4})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式3（新增）: 毕恺峰@+86 189 4239 3851_20240525160431_transcription.txt
         self.pattern3 = re.compile(
             r'(.+?)@\+86\s*(\d{3})\s*(\d{4})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式4（新增）: 王任栋@138 1081 5897_20250211150653_transcription.txt (无+86前缀)
         self.pattern4 = re.compile(
             r'(.+?)@(\d{3})\s*(\d{4})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式5（新增）: 姓名@区号 电话号码 (如: HR service@0755 2856 0169)
         self.pattern5 = re.compile(
             r'(.+?)@(\d{3,4})\s*(\d{3,4})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式6（新增）: 姓名@400电话 (如: 神州租车@400 616 6666)
         self.pattern6 = re.compile(
             r'(.+?)@(400)\s*(\d{3})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式7（新增）: 姓名@特殊服务号 (如: 移动@10086, 顺丰速运@95338)
         self.pattern7 = re.compile(
             r'(.+?)@(\d{5,6})_(\d{14})_transcription\.txt'
         )
-        # 格式8（新增）: 区号 电话号码 (如: 0755 2345 1855)
         self.pattern8 = re.compile(
             r'(\d{3,4})\s*(\d{3,4})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式9（新增）: 400电话 (如: 400 903 0487)
         self.pattern9 = re.compile(
             r'(400)\s*(\d{3})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式10（新增）: 短号码4+4 (如: 6335 2861)
         self.pattern10 = re.compile(
             r'(\d{4})\s*(\d{4})_(\d{14})_transcription\.txt'
         )
-        # 格式11（新增）: 8位固定电话 (如: 01012367)
         self.pattern11 = re.compile(
             r'(\d{8})_(\d{14})_transcription\.txt'
         )
-        # 格式12（新增）: 特殊服务号 (如: 950618, 10086, 95187)
         self.pattern12 = re.compile(
             r'(\d{5,6})_(\d{14})_transcription\.txt'
         )
-        # 格式13（新增）: 国际拨号0086格式 (如: 008615810795994)
         self.pattern13 = re.compile(
             r'(0086)(\d{11})_(\d{14})_transcription\.txt'
         )
